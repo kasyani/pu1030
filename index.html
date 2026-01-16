@@ -7,32 +7,26 @@
     <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_786518a487504f7678505500859556"></script>
     <style>
         body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', sans-serif; text-align: center; margin: 0; padding: 20px; }
-        
-        /* 상단 헤더 */
         .top-container { display: flex; align-items: center; justify-content: center; max-width: 800px; margin: 0 auto 30px auto; position: relative; }
-        .mini-banner { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; cursor: pointer; border: 3px solid #ff6b81; position: absolute; left: 0; transition: 0.3s; }
-        .mini-banner:hover { transform: scale(1.1); }
+        .mini-banner { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; cursor: pointer; border: 3px solid #ff6b81; position: absolute; left: 0; transition: 0.3s; z-index: 10; }
         .mini-banner img { width: 100%; height: 100%; object-fit: cover; }
         .header { color: #ff6b81; font-size: 24px; font-weight: bold; text-shadow: 1px 1px #fff; }
 
-        /* 갤러리 3-3-2 */
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 800px; margin: 0 auto; }
         .item { background: white; border-radius: 20px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; transition: 0.2s; }
-        .item img:hover { opacity: 0.8; }
-        .like-box { margin-top: 10px; display: flex; justify-content: center; }
+        .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; }
+        .like-box { margin-top: 10px; display: flex; justify-content: center; min-height: 40px; }
 
-        /* 확대 팝업(모달) */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; padding: 40px 10px; }
-        .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 500px; position: relative; }
-        .modal-img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
-        .close { position: absolute; right: 20px; top: 10px; color: #ff6b81; font-size: 35px; font-weight: bold; cursor: pointer; }
+        /* 확대 팝업 */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; padding-top: 50px; }
+        .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; }
+        .modal-img { width: 100%; border-radius: 15px; }
+        .close { position: absolute; right: 20px; top: 10px; color: #ff6b81; font-size: 30px; font-weight: bold; cursor: pointer; }
         
-        /* 댓글창 디자인 */
-        .comment-section { border-top: 1px solid #ffe5ec; padding-top: 15px; text-align: left; }
-        .comment-title { font-size: 16px; font-weight: bold; color: #ff6b81; margin-bottom: 10px; display: block; }
-        .comment-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #ffdae3; margin-bottom: 10px; box-sizing: border-box; outline: none; }
-        .comment-btn { width: 100%; background: #ff6b81; color: white; border: none; padding: 10px; border-radius: 12px; cursor: pointer; font-weight: bold; }
+        /* 간편 댓글 전송창 */
+        .comment-section { border-top: 1px solid #ffe5ec; margin-top: 15px; padding-top: 15px; text-align: left; }
+        .comment-input { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ffdae3; margin-bottom: 10px; box-sizing: border-box; }
+        .comment-btn { width: 100%; background: #ff6b81; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-weight: bold; }
 
         .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; }
         @media (max-width: 600px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
@@ -49,7 +43,7 @@
 
     <div style="margin-bottom: 25px; font-size: 15px; color: #ff6b81; font-weight: bold; cursor: pointer; text-decoration: underline;" 
          onclick="window.open('https://www.sooplive.co.kr/station/pu1030')">
-        🌸 푸린공주 방송국 바로가기 (클릭) 🌸
+        🌸 푸린공주 방송국 바로가기 🌸
     </div>
 
     <div class="gallery">
@@ -92,30 +86,27 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <img id="img01" class="modal-img">
             <div class="comment-section">
-                <span class="comment-title">💬 팬 한줄 응원</span>
-                <input type="text" class="comment-input" placeholder="여기에 따뜻한 한마디를 남겨주세요!">
-                <button class="comment-btn" onclick="alert('댓글 저장 기능은 추가 연결이 필요해요!')">등록하기</button>
+                <p style="font-size: 14px; color: #ff6b81; font-weight: bold;">💬 한줄 응원 남기기</p>
+                <input type="text" id="userInput" class="comment-input" placeholder="응원 메시지를 입력하세요!">
+                <button class="comment-btn" onclick="sendMsg()">등록하기</button>
             </div>
         </div>
     </div>
 
     <script>
-        function openModal(src) {
-            document.getElementById("myModal").style.display = "block";
-            document.getElementById("img01").src = src;
-        }
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none";
-        }
-        // 배경 클릭 시 닫기 기능
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("myModal")) {
-                closeModal();
+        function openModal(src) { document.getElementById("myModal").style.display = "block"; document.getElementById("img01").src = src; }
+        function closeModal() { document.getElementById("myModal").style.display = "none"; }
+        window.onclick = function(event) { if (event.target == document.getElementById("myModal")) { closeModal(); } }
+        
+        function sendMsg() {
+            const msg = document.getElementById("userInput").value;
+            if(msg) {
+                alert("방명록에 소중한 메시지가 전달되었습니다! (임시 기능)");
+                document.getElementById("userInput").value = "";
             }
         }
     </script>
 
     <div class="footer">© THE K 푸린공주. All rights reserved.</div>
-
 </body>
 </html>
