@@ -6,42 +6,51 @@
     <title>THE K 푸린공주</title>
     <style>
         body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', sans-serif; text-align: center; margin: 0; padding: 20px; }
-        .header { color: #ff6b81; font-size: 28px; font-weight: bold; margin: 30px 0; text-shadow: 2px 2px #fff; }
+        .header { color: #ff6b81; font-size: 28px; font-weight: bold; margin: 20px 0; text-shadow: 2px 2px #fff; }
         
-        /* 사진을 담는 큰 상자 (3개씩 정렬) */
+        /* 상단 대표 배너 사진 설정 */
+        .top-banner { 
+            max-width: 800px; 
+            margin: 0 auto 30px auto; 
+            cursor: pointer; 
+            overflow: hidden; 
+            border-radius: 25px; 
+            box-shadow: 0 10px 20px rgba(255,107,129,0.2);
+            transition: 0.3s;
+        }
+        .top-banner:hover { transform: scale(1.02); }
+        .top-banner img { width: 100%; display: block; }
+
+        /* 3-3-2 갤러리 그리드 설정 */
         .gallery { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개씩 */
-            gap: 15px; /* 사진 사이 간격 */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; 
             max-width: 800px; 
-            margin: 0 auto;
-            padding: 10px;
+            margin: 0 auto; 
         }
 
         .item { 
             background: white; 
             border-radius: 20px; 
-            padding: 10px; 
-            box-shadow: 0 5px 15px rgba(255,107,129,0.1);
+            padding: 8px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: 0.3s;
             cursor: pointer;
         }
-        .item:hover { transform: translateY(-5px); }
-
-        /* 사진 크기 고정 */
+        .item:hover { transform: translateY(-5px); background-color: #fff9fa; }
         .item img { 
             width: 100%; 
-            aspect-ratio: 1 / 1; /* 사진을 정사각으로 고정 */
+            aspect-ratio: 1 / 1; 
             border-radius: 15px; 
             object-fit: cover; 
-            border: 1px solid #ffe5ec;
         }
 
         .title { font-size: 14px; font-weight: bold; color: #555; margin-top: 8px; }
         .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; }
 
-        /* 모바일에서는 2개씩 보이게 (선택사항) */
-        @media (max-width: 500px) {
+        /* 모바일용 레이아웃 (자동 조절) */
+        @media (max-width: 600px) {
             .gallery { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
@@ -50,10 +59,23 @@
 
     <div class="header">👑 THE K 푸린공주 👑</div>
 
+    <div class="top-banner" onclick="location.href='https://ch.sooplive.co.kr/'">
+        <img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" alt="대표배너">
+        <div style="background: white; padding: 10px; font-weight: bold; color: #ff6b81;">🌸 방송국 바로가기 (클릭) 🌸</div>
+    </div>
+
     <div class="gallery">
         <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e"><div class="title">푸린이 1</div></div>
         <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1"><div class="title">푸린이 2</div></div>
         <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec"><div class="title">푸린이 3</div></div>
         <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651"><div class="title">푸린이 4</div></div>
         <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98"><div class="title">푸린이 5</div></div>
-        <div class="item" onclick="location.href='#'"><img src="
+        <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/3014121d-ad8e-475b-82f0-f1d6df7026db"><div class="title">푸린이 6</div></div>
+        <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2"><div class="title">푸린이 7</div></div>
+        <div class="item" onclick="location.href='#'"><img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91"><div class="title">푸린이 8</div></div>
+    </div>
+
+    <div class="footer">© THE K 푸린공주. All rights reserved.</div>
+
+</body>
+</html>
