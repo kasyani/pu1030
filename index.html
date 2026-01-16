@@ -8,17 +8,11 @@
         body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; text-align: center; margin: 0; padding: 20px; }
         .header { color: #ff6b81; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px #fff; }
         .container { max-width: 600px; margin: auto; background: white; padding: 15px; border-radius: 25px; box-shadow: 0 10px 20px rgba(255,107,129,0.1); }
-        
-        .list-item { 
-            display: flex; align-items: center; padding: 15px; 
-            border-bottom: 1px solid #ffe5ec; cursor: pointer; transition: 0.2s; 
-        }
+        .list-item { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid #ffe5ec; cursor: pointer; transition: 0.2s; }
         .list-item:hover { background-color: #fff9fa; }
         .list-item img { width: 90px; height: 90px; border-radius: 15px; object-fit: cover; margin-right: 18px; border: 2px solid #ffecf0; }
         .list-info { text-align: left; }
         .list-title { font-weight: bold; color: #444; font-size: 17px; margin-bottom: 5px; }
-        .list-date { font-size: 13px; color: #aaa; }
-
         .footer { margin-top: 20px; font-size: 12px; color: #ffb3c1; }
     </style>
 </head>
@@ -26,36 +20,16 @@
 
     <div class="header">👑 THE K 푸린공주 👑</div>
 
-    <div class="container" id="gallery-list">
-        <div class="list-item" onclick="location.href='https://ch.sooplive.co.kr/'">
-            <img src="pu.gif" alt="사진1">
-            <div class="list-info">
-                <div class="list-title">귀여운 푸린이</div>
-                <div class="list-date">2026-01-16</div>
-            </div>
-        </div>
+    <div class="container">
+        <div class="list-item"><img src="pu.gif"> <div class="list-info"><div class="list-title">귀여운 푸린이</div></div></div>
+        <div class="list-item"><img src="pu2.gif"> <div class="list-info"><div class="list-title">푸린공주</div></div></div>
+        <div class="list-item"><img src="pu3.gif"> <div class="list-info"><div class="list-title">핑크 푸린</div></div></div>
 
-        <div class="list-item" onclick="location.href='https://ch.sooplive.co.kr/'">
-            <img src="pu2.gif" alt="사진2">
-            <div class="list-info">
-                <div class="list-title">푸린공주</div>
-                <div class="list-date">2026-01-16</div>
-            </div>
-        </div>
-
-        <div class="list-item" onclick="location.href='https://ch.sooplive.co.kr/'">
-            <img src="pu3.gif" alt="사진3">
-            <div class="list-info">
-                <div class="list-title">푸린이</div>
-                <div class="list-date">2026-01-16</div>
-            </div>
-        </div>
-
-        <div class="list-item" onclick="location.href='https://ch.sooplive.co.kr/'">
-            <img src="pu4.gif" alt="사진4">
+        <div class="list-item">
+            <img src="pu4.gif" onerror="this.src='pu4.gif.gif'; this.onerror=function(){this.src='pu4.GIF'; this.onerror=function(){this.src='pu4.png';}}">
             <div class="list-info">
                 <div class="list-title">옥수수 먹는 푸린공주</div>
-                <div class="list-date">2026-01-16</div>
+                <div style="font-size:12px; color:red;">* 사진이 안 보이면 1분만 기다려주세요!</div>
             </div>
         </div>
     </div>
