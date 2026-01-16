@@ -9,30 +9,23 @@
         body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', sans-serif; margin: 0; padding: 20px; }
         .main-wrapper { display: flex; max-width: 1250px; margin: 0 auto; gap: 25px; justify-content: center; align-items: flex-start; }
         .content-area { flex: 2; max-width: 850px; width: 100%; }
-        
-        /* 오른쪽 채팅창 영역 */
-        .chat-area { flex: 1; min-width: 320px; max-width: 350px; height: 600px; position: sticky; top: 20px; }
-        
+        .chat-area { flex: 1; min-width: 320px; max-width: 350px; height: 650px; position: sticky; top: 20px; }
         .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; }
         .mini-banner { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; cursor: pointer; border: 3px solid #ff6b81; position: absolute; left: 0; }
         .mini-banner img { width: 100%; height: 100%; object-fit: cover; }
         .header { color: #ff6b81; font-size: 24px; font-weight: bold; text-shadow: 1px 1px #fff; }
-
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px; }
         .item { background: white; border-radius: 20px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; }
+        .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; transition: 0.3s; }
+        .item img:hover { transform: scale(1.02); }
         .photo-title { font-size: 14px; font-weight: bold; color: #555; margin: 8px 0; }
         .like-box { display: flex; justify-content: center; min-height: 35px; }
-
-        /* 채팅창 스타일 */
-        .real-chat-frame { width: 100%; height: 100%; border: 3px solid #ffdae3; border-radius: 25px; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.05); overflow: hidden; }
-
+        .real-frame { width: 100%; height: 100%; border: 3px solid #ffdae3; border-radius: 25px; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.05); overflow: hidden; }
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; padding-top: 50px; }
         .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; text-align: center; }
         .modal-img { width: 100%; border-radius: 15px; }
         #caption { font-size: 18px; font-weight: bold; color: #ff6b81; margin: 15px 0; }
         .close { position: absolute; right: 20px; top: 10px; color: #ff6b81; font-size: 30px; font-weight: bold; cursor: pointer; }
-
         .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; text-align: center; }
         @media (max-width: 1000px) { .main-wrapper { flex-direction: column; align-items: center; } .chat-area { position: static; width: 100%; height: 500px; margin-top: 30px; } .gallery { grid-template-columns: repeat(2, 1fr); } }
     </style>
@@ -93,12 +86,13 @@
             
             <div style="background: white; border-radius: 25px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <span style="font-size: 18px; font-weight: bold; color: #ff6b81; margin-bottom: 15px; display: block;">💖 팬 소통 & 사진 제보 게시판 💖</span>
-                <iframe src="https://padlet.com/embed/6p4p84yjw0m9q6j5" frameborder="0" style="width:100%; height:450px; border-radius:15px; border:2px solid #ffe5ec;"></iframe>
-            </div>
+                
+                <iframe src="https://padlet.com/embed/6p4p84yjw0m9q6j5" frameborder="0" style="width:100%; height:500px; border-radius:15px; border:2px solid #ffe5ec;"></iframe>
+                </div>
         </div>
 
         <div class="chat-area">
-            <iframe src="https://www3.cbox.ws/box/?boxid=3537213&boxtoken=7h9m5k" width="100%" height="100%" frameborder="0" scrolling="auto" class="real-chat-frame"></iframe>
+            <iframe src="https://www.chatwing.com/thek_pulin" width="100%" height="100%" frameborder="0" scrolling="auto" class="real-frame"></iframe>
             <p style="font-size: 13px; color: #ff6b81; margin-top: 10px; font-weight: bold;">💬 실시간 수다방</p>
         </div>
     </div>
