@@ -7,26 +7,15 @@
     <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_786518a487504f7678505500859556"></script>
     <style>
         body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', sans-serif; margin: 0; padding: 20px; }
-        
-        /* 메인 레이아웃 */
-        .main-wrapper { 
-            display: flex; 
-            max-width: 1250px; 
-            margin: 0 auto; 
-            gap: 25px; 
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        /* 왼쪽 영역 */
+        .main-wrapper { display: flex; max-width: 1250px; margin: 0 auto; gap: 25px; justify-content: center; align-items: flex-start; }
         .content-area { flex: 2; max-width: 850px; width: 100%; }
         
-        /* 오른쪽 채팅창 영역 */
+        /* 오른쪽 채팅 버튼 영역 */
         .chat-area { 
-            flex: 1; min-width: 320px; max-width: 350px; background: white; 
-            border: 3px solid #ffdae3; border-radius: 25px; height: 650px; 
+            flex: 1; min-width: 300px; max-width: 320px; background: white; 
+            border: 3px solid #ffdae3; border-radius: 25px; padding: 30px 20px;
             position: sticky; top: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            overflow: hidden; display: flex; flex-direction: column;
+            text-align: center;
         }
 
         .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; }
@@ -34,23 +23,27 @@
         .mini-banner img { width: 100%; height: 100%; object-fit: cover; }
         .header { color: #ff6b81; font-size: 24px; font-weight: bold; text-shadow: 1px 1px #fff; }
 
-        /* 갤러리 */
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px; }
         .item { background: white; border-radius: 20px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
-        .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; transition: 0.3s; }
-        .item img:hover { transform: scale(1.02); }
+        .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; }
         .photo-title { font-size: 14px; font-weight: bold; color: #555; margin: 8px 0; }
-        .like-box { display: flex; justify-content: center; min-height: 35px; }
+        
+        /* 채팅 버튼 디자인 */
+        .chat-open-btn { 
+            display: inline-block; background: #ff6b81; color: white; 
+            padding: 20px 30px; border-radius: 15px; text-decoration: none; 
+            font-weight: bold; font-size: 18px; margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255,107,129,0.3); transition: 0.3s;
+        }
+        .chat-open-btn:hover { background: #ff4757; transform: scale(1.05); }
 
-        /* 확대 모달 */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; padding-top: 50px; }
         .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; text-align: center; }
         .modal-img { width: 100%; border-radius: 15px; }
         #caption { font-size: 18px; font-weight: bold; color: #ff6b81; margin: 15px 0; }
         .close { position: absolute; right: 20px; top: 10px; color: #ff6b81; font-size: 30px; font-weight: bold; cursor: pointer; }
 
-        .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; text-align: center; }
-        @media (max-width: 1000px) { .main-wrapper { flex-direction: column; align-items: center; } .chat-area { position: static; width: 100%; height: 500px; margin-top: 30px; } .gallery { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 1000px) { .main-wrapper { flex-direction: column; align-items: center; } .chat-area { position: static; width: 100%; margin-top: 30px; } }
     </style>
 </head>
 <body>
@@ -65,14 +58,14 @@
             </div>
 
             <div class="gallery">
-                <div class="item"><img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src, '귀여운 푸린')"><div class="photo-title">귀여운 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu1" data-lyket-namespace="the-k"></div></div></div>
-                <div class="item"><img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1" onclick="openModal(this.src, '하트 뿅뿅')"><div class="photo-title">하트 뿅뿅</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu2" data-lyket-namespace="the-k"></div></div></div>
-                <div class="item"><img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec" onclick="openModal(this.src, '옥수수 슈킹 푸린')"><div class="photo-title">옥수수 슈킹 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu3" data-lyket-namespace="the-k"></div></div></div>
-                <div class="item"><img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651" onclick="openModal(this.src, '토끼 푸린')"><div class="photo-title">토끼 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu4" data-lyket-namespace="the-k"></div></div></div>
-                <div class="item"><img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98" onclick="openModal(this.src, '웃는 푸린')"><div class="photo-title">웃는 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu5" data-lyket-namespace="the-k"></div></div></div>
-                <div class="item"><img src="https://github.com/user-attachments/assets/3014121d-ad8e-475b-82f0-f1d6df7026db" onclick="openModal(this.src, '공주님 푸린')"><div class="photo-title">공주님 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu6" data-lyket-namespace="the-k"></div></div></div>
-                <div class="item"><img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2" onclick="openModal(this.src, '이쁜 푸린')"><div class="photo-title">이쁜 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu7" data-lyket-namespace="the-k"></div></div></div>
-                <div class="item"><img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91" onclick="openModal(this.src, '여신 푸린')"><div class="photo-title">여신 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu8" data-lyket-namespace="the-k"></div></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src, '귀여운 푸린')"><div class="photo-title">귀여운 푸린</div><div data-lyket-type="like" data-lyket-id="pu1"></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1" onclick="openModal(this.src, '하트 뿅뿅')"><div class="photo-title">하트 뿅뿅</div><div data-lyket-type="like" data-lyket-id="pu2"></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec" onclick="openModal(this.src, '옥수수 슈킹 푸린')"><div class="photo-title">옥수수 슈킹 푸린</div><div data-lyket-type="like" data-lyket-id="pu3"></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651" onclick="openModal(this.src, '토끼 푸린')"><div class="photo-title">토끼 푸린</div><div data-lyket-type="like" data-lyket-id="pu4"></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98" onclick="openModal(this.src, '웃는 푸린')"><div class="photo-title">웃는 푸린</div><div data-lyket-type="like" data-lyket-id="pu5"></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/3014121d-ad8e-475b-82f0-f1d6df7026db" onclick="openModal(this.src, '공주님 푸린')"><div class="photo-title">공주님 푸린</div><div data-lyket-type="like" data-lyket-id="pu6"></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2" onclick="openModal(this.src, '이쁜 푸린')"><div class="photo-title">이쁜 푸린</div><div data-lyket-type="like" data-lyket-id="pu7"></div></div>
+                <div class="item"><img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91" onclick="openModal(this.src, '여신 푸린')"><div class="photo-title">여신 푸린</div><div data-lyket-type="like" data-lyket-id="pu8"></div></div>
             </div>
             
             <div style="background: white; border-radius: 25px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
@@ -82,8 +75,10 @@
         </div>
 
         <div class="chat-area">
-            <div style="padding: 15px; background: #ffdae3; color: #ff6b81; font-weight: bold; text-align: center;">💬 실시간 수다방</div>
-            <iframe src="https://minnit.chat/thek_pulin?embed&nickname=" style="border:none;width:100%;height:100%;" allowTransparency="true"></iframe>
+            <h3 style="color: #ff6b81;">💬 실시간 수다방</h3>
+            <p style="font-size: 14px; color: #888;">보안상 채팅방을 새 창으로 열어드릴게요!</p>
+            <a href="https://minnit.chat/thek_pulin" target="_blank" class="chat-open-btn">채팅 참여하기 🚀</a>
+            <p style="font-size: 12px; color: #ffb3c1; margin-top: 20px;">닉네임만 정하고 바로 입장 가능!</p>
         </div>
     </div>
 
