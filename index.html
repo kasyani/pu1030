@@ -2,235 +2,60 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>푸린이 갤러리</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE K 푸린공주</title>
     <style>
-        body {
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
-            margin: 0; padding: 50px 0;
-            font-family: 'Jua', sans-serif;
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .header { color: #ff6b81; font-size: 28px; font-weight: bold; margin-bottom: 25px; text-shadow: 2px 2px #fff; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 15px; border-radius: 25px; box-shadow: 0 10px 20px rgba(255,107,129,0.1); }
+        
+        /* 게시물 스타일 */
+        .list-item { 
+            display: flex; align-items: center; padding: 15px; 
+            border-bottom: 1px solid #ffe5ec; cursor: pointer; transition: 0.2s; 
         }
+        .list-item:hover { background-color: #fff9fa; }
+        .list-item img { width: 90px; height: 90px; border-radius: 15px; object-fit: cover; margin-right: 18px; border: 2px solid #ffecf0; }
+        .list-info { text-align: left; }
+        .list-title { font-weight: bold; color: #444; font-size: 17px; margin-bottom: 5px; }
+        .list-date { font-size: 13px; color: #aaa; }
 
-        /* 상단 프로필 영역 스타일 */
-        .profile-card {
-            background: white; padding: 30px; border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            margin-bottom: 30px; text-align: center;
-        }
-
-        .image-container { display: flex; justify-content: center; gap: 15px; }
-        .profile-img { 
-            width: 100px; height: 100px; 
-            object-fit: cover; border-radius: 50%; 
-            border: 4px solid #ffdde1;
-            transition: 0.3s;
-            cursor: pointer; 
-        }
-        .profile-img:hover { transform: scale(1.1); border-color: #ff6b81; }
-
-        /* 게시판 컨테이너 */
-        .board-container {
-            width: 90%; max-width: 850px;
-            background: white; padding: 30px; border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        h1 { text-align: center; color: #ff6b81; margin-top: 0; }
-
-        /* [목록 화면] */
-        #listView { display: block; }
-        .btn-write-open {
-            background: #ff6b81; color: white; border: none; padding: 12px 25px;
-            border-radius: 15px; font-family: 'Jua'; font-size: 18px;
-            cursor: pointer; float: right; margin-bottom: 20px;
-        }
-
-        table { width: 100%; border-collapse: collapse; clear: both; }
-        th, td { padding: 15px; text-align: center; border-bottom: 1px solid #ffdde1; color: #555; }
-        th { background: #fff0f3; color: #ff6b81; font-size: 18px; }
-        .board-gif { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; cursor: pointer; }
-
-        /* [글쓰기 & 상세보기 화면] */
-        #writeView, #detailView { display: none; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        label { display: block; color: #ff6b81; margin-bottom: 8px; font-size: 18px; }
-        input[type="text"] { 
-            width: 100%; padding: 15px; border-radius: 15px; 
-            border: 2px solid #ffdde1; font-family: 'Jua'; box-sizing: border-box; 
-            font-size: 16px; background: #fffafb;
-        }
-
-        /* 📁 파일 업로드 박스 스타일 */
-        .upload-box {
-            width: 100%; height: 180px; border: 3px dashed #ffdde1;
-            border-radius: 20px; background: #fffafb;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s; color: #ff6b81;
-        }
-        .upload-box:hover, .upload-box.dragover { background: #fff0f3; border-color: #ff6b81; }
-        .preview-img { width: 120px; height: 120px; object-fit: cover; border-radius: 10px; display: none; }
-
-        .btn-group { display: flex; gap: 10px; margin-top: 30px; }
-        .btn-main { flex: 2; background: #ff6b81; color: white; border: none; padding: 15px; border-radius: 15px; font-family: 'Jua'; font-size: 18px; cursor: pointer; }
-        .btn-sub { flex: 1; background: #eee; color: #666; border: none; padding: 15px; border-radius: 15px; font-family: 'Jua'; font-size: 18px; cursor: pointer; }
-
-        .detail-img { width: 100%; max-width: 500px; border-radius: 20px; margin: 25px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* 하단 정보 */
+        .footer { margin-top: 20px; font-size: 12px; color: #ffb3c1; }
     </style>
 </head>
 <body>
 
-    <div class="profile-card">
-        <div class="image-container">
-            <a href="https://www.sooplive.co.kr/station/pu1030" target="_blank"><img src="pu.gif" alt="푸린1" class="profile-img"></a>
-            <a href="https://www.sooplive.co.kr/station/pu1030" target="_blank"><img src="pu2.gif" alt="푸린2" class="profile-img"></a>
-            <a href="https://www.sooplive.co.kr/station/pu1030" target="_blank"><img src="pu3.gif" alt="푸린3" class="profile-img"></a>
+    <div class="header">👑 THE K 푸린공주 👑</div>
+
+    <div class="container" id="gallery-list">
+        <div class="list-item" onclick="location.href='https://ch.sooplive.co.kr/'">
+            <img src="pu.gif" alt="사진1">
+            <div class="list-info">
+                <div class="list-title">귀여운 푸린이 첫 번째</div>
+                <div class="list-date">2026-01-16</div>
+            </div>
         </div>
-        <p style="color: #ff6b81; margin-top: 15px; font-size: 20px;">💖 즐거운 푸린 갤러리 💖</p>
+
+        <div class="list-item" onclick="location.href='https://ch.sooplive.co.kr/'">
+            <img src="pu2.gif" alt="사진2">
+            <div class="list-info">
+                <div class="list-title">윙크하는 푸린공주</div>
+                <div class="list-date">2026-01-16</div>
+            </div>
+        </div>
+
+        <div class="list-item" onclick="location.href='https://ch.sooplive.co.kr/'">
+            <img src="pu3.gif" alt="사진3">
+            <div class="list-info">
+                <div class="list-title">핑크 핑크 푸린이</div>
+                <div class="list-date">2026-01-16</div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="board-container">
-        <div id="listView">
-            <button class="btn-write-open" onclick="showView('writeView')">✍️ 글쓰기</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 10%">번호</th>
-                        <th style="width: 20%">움짤</th>
-                        <th>제목</th>
-                        <th style="width: 20%">작성자</th>
-                    </tr>
-                </thead>
-                <tbody id="boardBody"></tbody>
-            </table>
-        </div>
+    <div class="footer">© THE K 푸린공주. All rights reserved.</div>
 
-        <div id="writeView">
-            <h1>✍️ 새로운 글 남기기</h1>
-            <div class="form-group">
-                <label>글 제목</label>
-                <input type="text" id="postTitle" placeholder="제목을 입력하세요">
-            </div>
-            <div class="form-group">
-                <label>닉네임</label>
-                <input type="text" id="postAuthor" placeholder="작성자 닉네임">
-            </div>
-            <div class="form-group">
-                <label>사진 (클릭하여 파일을 찾거나 여기에 끌어다 놓으세요)</label>
-                <div class="upload-box" id="dropZone" onclick="document.getElementById('fileInput').click()">
-                    <span id="uploadText">📁 여기에 이미지를 드래그하거나 클릭하세요</span>
-                    <img id="uploadPreview" class="preview-img">
-                    <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="previewFile(this.files[0])">
-                </div>
-            </div>
-            <div class="btn-group">
-                <button class="btn-sub" onclick="resetWriteView(); showView('listView');">취소</button>
-                <button class="btn-main" onclick="addPost()">✨ 게시물 올리기</button>
-            </div>
-        </div>
-
-        <div id="detailView">
-            <h1 id="detTitle" style="margin-bottom: 10px;">제목</h1>
-            <p style="text-align:center; color:gray; font-size: 18px;">작성자: <span id="detAuthor" style="color:#ff6b81"></span></p>
-            <hr style="border: 0; border-top: 1px solid #ffdde1;">
-            <div style="text-align:center;"><img id="detImg" src="" class="detail-img"></div>
-            <div class="btn-group">
-                <button class="btn-main" onclick="showView('listView')">목록으로 돌아가기</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let currentFileData = ""; // 선택된 이미지 데이터를 저장할 변수
-
-        function showView(viewId) {
-            document.getElementById('listView').style.display = 'none';
-            document.getElementById('writeView').style.display = 'none';
-            document.getElementById('detailView').style.display = 'none';
-            document.getElementById(viewId).style.display = 'block';
-        }
-
-        // 파일 미리보기 및 처리
-        function previewFile(file) {
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                currentFileData = e.target.result; // 이미지 데이터를 변수에 저장
-                document.getElementById('uploadText').style.display = 'none';
-                const preview = document.getElementById('uploadPreview');
-                preview.src = currentFileData;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // 드래그 앤 드롭 설정
-        const dropZone = document.getElementById('dropZone');
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('dragover'); });
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
-            previewFile(e.dataTransfer.files[0]);
-        });
-
-        function addPost() {
-            const title = document.getElementById('postTitle').value;
-            const author = document.getElementById('postAuthor').value;
-            if (!title || !author || !currentFileData) { alert("제목, 닉네임, 사진을 모두 확인해주세요! 🎀"); return; }
-            
-            const posts = JSON.parse(localStorage.getItem('myFanGallery')) || [];
-            posts.unshift({ title, author, gif: currentFileData });
-            localStorage.setItem('myFanGallery', JSON.stringify(posts));
-            
-            resetWriteView();
-            loadPosts(); 
-            showView('listView');
-        }
-
-        function resetWriteView() {
-            document.getElementById('postTitle').value = '';
-            document.getElementById('postAuthor').value = '';
-            document.getElementById('fileInput').value = '';
-            document.getElementById('uploadPreview').style.display = 'none';
-            document.getElementById('uploadText').style.display = 'block';
-            currentFileData = "";
-        }
-
-        function loadPosts() {
-            const boardBody = document.getElementById('boardBody');
-            const posts = JSON.parse(localStorage.getItem('myFanGallery')) || [];
-            let html = `
-                <tr>
-                    <td>푸린</td>
-                    <td><img src="pu.gif" class="board-gif"></td>
-                    <td style="text-align:left; cursor:pointer;" onclick="alert('푸린이 존예!')"><b>푸린이 존예!</b></td>
-                    <td>댄</td>
-                </tr>
-            `;
-            posts.forEach((p, i) => {
-                html += `
-                    <tr>
-                        <td>${posts.length - i}</td>
-                        <td><img src="${p.gif}" class="board-gif" onclick="viewDetail(${i})"></td>
-                        <td style="text-align:left; cursor:pointer;" onclick="viewDetail(${i})">${p.title}</td>
-                        <td>${p.author}</td>
-                    </tr>
-                `;
-            });
-            boardBody.innerHTML = html;
-        }
-
-        function viewDetail(index) {
-            const posts = JSON.parse(localStorage.getItem('myFanGallery'));
-            const data = posts[index];
-            document.getElementById('detTitle').innerText = data.title;
-            document.getElementById('detAuthor').innerText = data.author;
-            document.getElementById('detImg').src = data.gif;
-            showView('detailView');
-        }
-        window.onload = loadPosts;
-    </script>
 </body>
 </html>
-
