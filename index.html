@@ -15,8 +15,6 @@
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 800px; margin: 0 auto; }
         .item { background: white; border-radius: 20px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; }
-        
-        /* 사진 제목 스타일 */
         .photo-title { font-size: 14px; font-weight: bold; color: #555; margin: 8px 0; }
         .like-box { display: flex; justify-content: center; min-height: 35px; }
 
@@ -26,10 +24,10 @@
         .modal-img { width: 100%; border-radius: 15px; }
         #caption { font-size: 18px; font-weight: bold; color: #ff6b81; margin: 15px 0; }
         .close { position: absolute; right: 20px; top: 10px; color: #ff6b81; font-size: 30px; font-weight: bold; cursor: pointer; }
-        
-        .comment-section { border-top: 1px solid #ffe5ec; margin-top: 15px; padding-top: 15px; text-align: left; }
-        .comment-input { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ffdae3; margin-bottom: 10px; box-sizing: border-box; }
-        .comment-btn { width: 100%; background: #ff6b81; color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+
+        /* 하단 게시판 스타일 */
+        .board-section { max-width: 800px; margin: 50px auto; padding: 20px; background: white; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .board-title { font-size: 20px; font-weight: bold; color: #ff6b81; margin-bottom: 20px; display: block; }
 
         .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; }
         @media (max-width: 600px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
@@ -51,27 +49,27 @@
 
     <div class="gallery">
         <div class="item">
-            <img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src, '옥수수 냠냠 푸린')">
+            <img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src, '귀여운 푸린')">
             <div class="photo-title">귀여운 푸린</div>
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu1" data-lyket-namespace="the-k"></div></div>
         </div>
         <div class="item">
-            <img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1" onclick="openModal(this.src, '윙크하는 푸린')">
+            <img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1" onclick="openModal(this.src, '하트 뿅뿅')">
             <div class="photo-title">하트 뿅뿅</div>
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu2" data-lyket-namespace="the-k"></div></div>
         </div>
         <div class="item">
-            <img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec" onclick="openModal(this.src, '꽃보다 푸린')">
+            <img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec" onclick="openModal(this.src, '옥수수 슈킹 푸린')">
             <div class="photo-title">옥수수 슈킹 푸린</div>
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu3" data-lyket-namespace="the-k"></div></div>
         </div>
         <div class="item">
-            <img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651" onclick="openModal(this.src, '상큼한 푸린')">
+            <img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651" onclick="openModal(this.src, '토끼 푸린')">
             <div class="photo-title">토끼 푸린</div>
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu4" data-lyket-namespace="the-k"></div></div>
         </div>
         <div class="item">
-            <img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98" onclick="openModal(this.src, '리본 단 푸린')">
+            <img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98" onclick="openModal(this.src, '웃는 푸린')">
             <div class="photo-title">웃는 푸린</div>
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu5" data-lyket-namespace="the-k"></div></div>
         </div>
@@ -81,26 +79,28 @@
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu6" data-lyket-namespace="the-k"></div></div>
         </div>
         <div class="item">
-            <img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2" onclick="openModal(this.src, '하트 푸린')">
+            <img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2" onclick="openModal(this.src, '이쁜 푸린')">
             <div class="photo-title">이쁜 푸린</div>
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu7" data-lyket-namespace="the-k"></div></div>
         </div>
         <div class="item">
-            <img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91" onclick="openModal(this.src, '웃는 푸린')">
+            <img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91" onclick="openModal(this.src, '여신 푸린')">
             <div class="photo-title">여신 푸린</div>
             <div class="like-box"><div data-lyket-type="like" data-lyket-id="pu8" data-lyket-namespace="the-k"></div></div>
         </div>
+    </div>
+
+    <div class="board-section">
+        <span class="board-title">💖 팬 소통 & 사진 제보 💖</span>
+        <iframe src="https://padlet.com/embed/6p4p84yjw0m9q6j5" frameborder="0" width="100%" height="500px" style="border-radius: 15px; border: 1px solid #ffe5ec;"></iframe>
     </div>
 
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <img id="img01" class="modal-img">
-            <div id="caption"></div> <div class="comment-section">
-                <p style="font-size: 14px; color: #ff6b81; font-weight: bold;">💬 한줄 응원 남기기</p>
-                <input type="text" id="userInput" class="comment-input" placeholder="응원 메시지를 입력하세요!">
-                <button class="comment-btn" onclick="alert('메시지 전송 완료!')">등록하기</button>
-            </div>
+            <div id="caption"></div>
+            <p style="font-size: 13px; color: #888;">상세 댓글은 하단 게시판에 남겨주세요! 🌸</p>
         </div>
     </div>
 
@@ -108,7 +108,7 @@
         function openModal(src, title) { 
             document.getElementById("myModal").style.display = "block"; 
             document.getElementById("img01").src = src;
-            document.getElementById("caption").innerText = title; // 제목 넣기
+            document.getElementById("caption").innerText = title;
         }
         function closeModal() { document.getElementById("myModal").style.display = "none"; }
         window.onclick = function(event) { if (event.target == document.getElementById("myModal")) { closeModal(); } }
@@ -117,4 +117,3 @@
     <div class="footer">© THE K 푸린공주. All rights reserved.</div>
 </body>
 </html>
-
