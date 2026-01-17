@@ -6,4 +6,4 @@
 ![p3](https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec)
 ![p2](https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1)
 ![p1](https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e)
-[3082 푸린응원가.mp3](https://github.com/user-attachments/files/24688995/3082.mp3)
+[3082.mp3](https://github.com/user-attachments/files/24688995/3082.mp3)
