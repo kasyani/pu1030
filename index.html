@@ -17,19 +17,23 @@
         
         .container { max-width: 900px; margin: 0 auto; }
 
-        /* 음악 컨트롤러 디자인 */
+        /* 음악 컨트롤러 디자인 (음량 슬라이더 추가) */
         .bgm-controls {
             position: fixed; bottom: 20px; right: 20px; z-index: 3000;
-            background: white; padding: 10px 20px; border-radius: 50px;
+            background: white; padding: 12px 20px; border-radius: 50px;
             box-shadow: 0 5px 15px rgba(255,107,129,0.3);
-            display: flex; align-items: center; gap: 10px; border: 2px solid #ff6b81;
+            display: flex; align-items: center; gap: 12px; border: 2px solid #ff6b81;
         }
         .bgm-btn {
             background: #ff6b81; color: white; border: none; padding: 8px 15px;
             border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px;
-            transition: 0.3s;
+            transition: 0.3s; white-space: nowrap;
         }
-        .bgm-btn:hover { background: #ff4757; transform: scale(1.05); }
+        
+        /* 음량 슬라이더 스타일 */
+        .volume-slider {
+            width: 70px; cursor: pointer; accent-color: #ff6b81;
+        }
 
         /* 상단 배너 */
         .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; }
@@ -53,7 +57,7 @@
         .board-section { background: white; border-radius: 30px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 40px; }
         .board-title { font-size: 18px; font-weight: bold; color: #ff6b81; margin-bottom: 15px; display: block; }
 
-        /* 모달 팝업 */
+        /* 확대 모달 */
         .modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; padding-top: 50px; }
         .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; }
         .modal-img { width: 100%; border-radius: 15px; }
@@ -75,8 +79,9 @@
     </audio>
 
     <div class="bgm-controls">
-        <span id="musicText" style="font-size: 12px; color: #ff6b81; font-weight: bold;">Music Stop 🔇</span>
+        <span id="musicText" style="font-size: 12px; color: #ff6b81; font-weight: bold;">Music 🔇</span>
         <button class="bgm-btn" id="playBtn" onclick="toggleBgm()">노래 켜기</button>
+        <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
     </div>
 
     <div class="sparkle-icon" style="top: 15%; left: 5%;">✨</div>
@@ -121,21 +126,27 @@
         var bgm = document.getElementById("bgm");
         var playBtn = document.getElementById("playBtn");
         var musicText = document.getElementById("musicText");
+        var volumeControl = document.getElementById("volumeControl");
 
-        // 볼륨을 절반(0.5)으로 설정
-        bgm.volume = 0.5;
+        // 초기 볼륨 설정 (50%)
+        bgm.volume = volumeControl.value;
+
+        // 음량 조절 이벤트
+        volumeControl.addEventListener('input', function() {
+            bgm.volume = this.value;
+        });
 
         function toggleBgm() {
             if (bgm.paused) { 
                 bgm.play().then(() => {
                     playBtn.innerText = "노래 끄기"; 
-                    musicText.innerText = "Music On 🎶";
-                }).catch(e => alert("노래 데이터를 불러오는 중입니다. 잠시 후 다시 눌러주세요!"));
+                    musicText.innerText = "Music 🎶";
+                }).catch(e => alert("노래 데이터를 불러오는 중입니다!"));
             } 
             else { 
                 bgm.pause(); 
                 playBtn.innerText = "노래 켜기"; 
-                musicText.innerText = "Music Stop 🔇";
+                musicText.innerText = "Music 🔇";
             }
         }
 
@@ -145,7 +156,6 @@
             document.getElementById("caption").innerText = title;
         }
         function closeModal() { document.getElementById("myModal").style.display = "none"; }
-        window.onclick = function(event) { if (event.target == document.getElementById("myModal")) { closeModal(); } }
     </script>
 </body>
 </html>
