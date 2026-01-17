@@ -6,7 +6,6 @@
     <title>THE K 푸린공주</title>
     <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_786518a487504f7678505500859556"></script>
     <style>
-        /* 하트 커서 및 기본 배경 */
         body { 
             background-color: #fff0f3; 
             font-family: 'Apple SD Gothic Neo', sans-serif; 
@@ -14,10 +13,7 @@
             cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym847.cur'), auto !important;
             overflow-x: hidden;
         }
-        
         .container { max-width: 900px; margin: 0 auto; }
-
-        /* 음악 컨트롤러 (우측 하단) */
         .bgm-controls {
             position: fixed; bottom: 20px; right: 20px; z-index: 3000;
             background: white; padding: 10px 20px; border-radius: 50px;
@@ -27,44 +23,27 @@
         .bgm-btn {
             background: #ff6b81; color: white; border: none; padding: 8px 15px;
             border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px;
-            transition: 0.3s;
         }
-        .bgm-btn:hover { background: #ff4757; transform: scale(1.05); }
-
-        /* 상단 배너 (65px) */
         .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; }
         .mini-banner { 
             width: 65px; height: 65px; border-radius: 50%; overflow: hidden; cursor: pointer; 
             border: 2px solid #ff6b81; position: absolute; left: 0; transition: 0.5s; 
-            box-shadow: 0 0 10px rgba(255,107,129,0.2);
         }
         .mini-banner:hover { transform: rotate(360deg); }
         .mini-banner img { width: 100%; height: 100%; object-fit: cover; }
         .header { color: #ff6b81; font-size: 26px; font-weight: bold; text-shadow: 2px 2px #fff; }
-
-        /* 갤러리 레이아웃 */
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px; }
         .item { background: white; border-radius: 25px; padding: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
-        .item:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(255,107,129,0.1); }
+        .item:hover { transform: translateY(-10px); }
         .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 20px; object-fit: cover; cursor: pointer; }
         .photo-title { font-size: 14px; font-weight: bold; color: #555; margin: 10px 0; }
-        .like-box { display: flex; justify-content: center; min-height: 35px; }
-
-        /* 게시판 구역 */
         .board-section { background: white; border-radius: 30px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 40px; }
-        .board-title { font-size: 18px; font-weight: bold; color: #ff6b81; margin-bottom: 15px; display: block; }
-
-        /* 모달 팝업 */
         .modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); overflow: auto; padding-top: 50px; }
         .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; }
         .modal-img { width: 100%; border-radius: 15px; }
-        #caption { font-size: 18px; font-weight: bold; color: #ff6b81; margin: 15px 0; }
         .close { position: absolute; right: 20px; top: 10px; color: #ff6b81; font-size: 30px; font-weight: bold; cursor: pointer; }
-
-        /* 장식 애니메이션 */
-        .sparkle-icon { position: fixed; pointer-events: none; color: #ffb3c1; font-size: 20px; animation: sparkle 2.s infinite; z-index: 1000; }
+        .sparkle-icon { position: fixed; pointer-events: none; color: #ffb3c1; font-size: 20px; animation: sparkle 2s infinite; z-index: 1000; }
         @keyframes sparkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } }
-        
         .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; padding-bottom: 30px; }
         @media (max-width: 700px) { .gallery { grid-template-columns: repeat(2, 1fr); } .mini-banner { position: static; margin-bottom: 10px; } .top-container { flex-direction: column; } }
     </style>
@@ -72,7 +51,7 @@
 <body>
 
     <audio id="bgm" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="3082 푸린응원가.mp3" type="audio/mpeg">
     </audio>
 
     <div class="bgm-controls">
@@ -98,55 +77,37 @@
         </div>
 
         <div class="gallery">
-            <div class="item"><img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src, '귀여운 푸린')"><div class="photo-title">귀여운 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu1"></div></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1" onclick="openModal(this.src, '하트 뿅뿅')"><div class="photo-title">하트 뿅뿅</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu2"></div></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec" onclick="openModal(this.src, '옥수수 슈킹 푸린')"><div class="photo-title">옥수수 슈킹 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu3"></div></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651" onclick="openModal(this.src, '토끼 푸린')"><div class="photo-title">토끼 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu4"></div></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98" onclick="openModal(this.src, '웃는 푸린')"><div class="photo-title">웃는 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu5"></div></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/3014121d-ad8e-475b-82f0-f1d6df7026db" onclick="openModal(this.src, '공주님 푸린')"><div class="photo-title">공주님 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu6"></div></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2" onclick="openModal(this.src, '이쁜 푸린')"><div class="photo-title">이쁜 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu7"></div></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91" onclick="openModal(this.src, '여신 푸린')"><div class="photo-title">여신 푸린</div><div class="like-box"><div data-lyket-type="like" data-lyket-id="pu8"></div></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src, '귀여운 푸린')"><div class="photo-title">귀여운 푸린</div><div data-lyket-type="like" data-lyket-id="pu1"></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1" onclick="openModal(this.src, '하트 뿅뿅')"><div class="photo-title">하트 뿅뿅</div><div data-lyket-type="like" data-lyket-id="pu2"></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec" onclick="openModal(this.src, '옥수수 슈킹 푸린')"><div class="photo-title">옥수수 슈킹 푸린</div><div data-lyket-type="like" data-lyket-id="pu3"></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651" onclick="openModal(this.src, '토끼 푸린')"><div class="photo-title">토끼 푸린</div><div data-lyket-type="like" data-lyket-id="pu4"></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98" onclick="openModal(this.src, '웃는 푸린')"><div class="photo-title">웃는 푸린</div><div data-lyket-type="like" data-lyket-id="pu5"></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/3014121d-ad8e-475b-82f0-f1d6df7026db" onclick="openModal(this.src, '공주님 푸린')"><div class="photo-title">공주님 푸린</div><div data-lyket-type="like" data-lyket-id="pu6"></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2" onclick="openModal(this.src, '이쁜 푸린')"><div class="photo-title">이쁜 푸린</div><div data-lyket-type="like" data-lyket-id="pu7"></div></div>
+            <div class="item"><img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91" onclick="openModal(this.src, '여신 푸린')"><div class="photo-title">여신 푸린</div><div data-lyket-type="like" data-lyket-id="pu8"></div></div>
         </div>
         
         <div class="board-section">
-            <span class="board-title">💖 팬 소통 & 사진 제보 게시판 💖</span>
+            <span style="font-size: 18px; font-weight: bold; color: #ff6b81; margin-bottom: 15px; display: block;">💖 팬 소통 & 사진 제보 게시판 💖</span>
             <iframe src="https://padlet.com/kmshes1992/padlet-rtqct0kur5sl2uuu" frameborder="0" style="width:100%; height:700px; border-radius:20px; border:2px solid #ffe5ec;"></iframe>
         </div>
-
-        <div class="footer">© THE K 푸린공주. All rights reserved.</div>
     </div>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img id="img01" class="modal-img">
-            <div id="caption"></div>
-        </div>
-    </div>
+    <div id="myModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><img id="img01" class="modal-img"><div id="caption"></div></div></div>
 
     <script>
         var bgm = document.getElementById("bgm");
         var playBtn = document.getElementById("playBtn");
-
-        // 배경음악 재생/정지 함수
         function toggleBgm() {
-            if (bgm.paused) {
-                bgm.play().catch(e => alert("음악 파일 링크를 확인해주세요!"));
-                playBtn.innerText = "노래 끄기";
-            } else {
-                bgm.pause();
-                playBtn.innerText = "노래 켜기";
-            }
+            if (bgm.paused) { bgm.play(); playBtn.innerText = "노래 끄기"; } 
+            else { bgm.pause(); playBtn.innerText = "노래 켜기"; }
         }
-
-        // 모달 제어
         function openModal(src, title) { 
             document.getElementById("myModal").style.display = "block"; 
             document.getElementById("img01").src = src;
             document.getElementById("caption").innerText = title;
         }
         function closeModal() { document.getElementById("myModal").style.display = "none"; }
-        window.onclick = function(event) { if (event.target == document.getElementById("myModal")) { closeModal(); } }
     </script>
 </body>
 </html>
