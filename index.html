@@ -50,8 +50,8 @@
 </head>
 <body>
 
-    <audio id="bgm" loop>
-        <source src="3082 푸린응원가.mp3" type="audio/mpeg">
+    <audio id="bgm" loop preload="auto">
+        <source src="https://github.com/user-attachments/files/18458145/3082.mp3" type="audio/mpeg">
     </audio>
 
     <div class="bgm-controls">
@@ -99,7 +99,10 @@
         var bgm = document.getElementById("bgm");
         var playBtn = document.getElementById("playBtn");
         function toggleBgm() {
-            if (bgm.paused) { bgm.play(); playBtn.innerText = "노래 끄기"; } 
+            if (bgm.paused) { 
+                bgm.play().then(() => { playBtn.innerText = "노래 끄기"; })
+                .catch(e => alert("노래 데이터를 불러오는 중입니다. 잠시 후 다시 눌러주세요!")); 
+            } 
             else { bgm.pause(); playBtn.innerText = "노래 켜기"; }
         }
         function openModal(src, title) { 
