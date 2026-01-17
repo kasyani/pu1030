@@ -8,15 +8,31 @@
     <style>
         body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', sans-serif; margin: 0; padding: 20px; text-align: center; cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym847.cur'), auto !important; overflow-x: hidden; }
         .container { max-width: 900px; margin: 0 auto; }
+        
+        /* 음악 컨트롤러 */
         .bgm-controls { position: fixed; bottom: 20px; right: 20px; z-index: 3000; background: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(255,107,129,0.3); display: flex; align-items: center; gap: 12px; border: 2px solid #ff6b81; }
-        .bgm-btn { background: #ff6b81; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px; }
+        .bgm-btn { background: #ff6b81; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px; white-space: nowrap; }
         .volume-slider { width: 70px; cursor: pointer; accent-color: #ff6b81; }
-        .header { color: #ff6b81; font-size: 28px; font-weight: bold; margin: 20px 0; text-shadow: 2px 2px #fff; }
+
+        /* 배너 및 헤더 스타일 */
+        .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; }
+        .mini-banner { 
+            width: 65px; height: 65px; border-radius: 50%; overflow: hidden; cursor: pointer; 
+            border: 2px solid #ff6b81; position: absolute; left: 0; transition: 0.5s; 
+        }
+        .mini-banner:hover { transform: rotate(360deg); }
+        .mini-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .header { color: #ff6b81; font-size: 28px; font-weight: bold; text-shadow: 2px 2px #fff; }
+
+        /* 갤러리 */
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px; }
         .item { background: white; border-radius: 20px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; }
+        
+        /* 섹션 스타일 */
         .content-section { background: white; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; border: 2px solid #ffe5ec; }
         .section-title { font-size: 18px; font-weight: bold; color: #ff6b81; margin-bottom: 15px; display: block; }
+        
         .modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); padding-top: 50px; }
         .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; }
         .modal-img { width: 100%; border-radius: 15px; }
@@ -32,11 +48,21 @@
     <div class="bgm-controls">
         <span id="musicText" style="font-size: 12px; color: #ff6b81; font-weight: bold;">Music 🔇</span>
         <button class="bgm-btn" id="playBtn" onclick="toggleBgm()">노래 켜기</button>
-        <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+        <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.01" value="0.03">
     </div>
 
     <div class="container">
-        <div class="header">👑 THE K 푸린공주 👑</div>
+        <div class="top-container">
+            <div class="mini-banner" onclick="window.open('https://www.sooplive.co.kr/station/pu1030')">
+                <img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e">
+            </div>
+            <div class="header">👑 THE K 푸린공주 👑</div>
+        </div>
+
+        <div style="margin-bottom: 30px; font-size: 15px; color: #ff6b81; font-weight: bold; cursor: pointer; text-decoration: underline;" 
+             onclick="window.open('https://www.sooplive.co.kr/station/pu1030')">
+            🌸 푸린공주 방송국 바로가기 🌸
+        </div>
 
         <div class="gallery">
             <div class="item"><img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu1"></div></div>
@@ -65,11 +91,26 @@
     <script>
         var bgm = document.getElementById("bgm");
         var vol = document.getElementById("volumeControl");
-        bgm.volume = 0.5;
-        vol.addEventListener('input', function() { bgm.volume = this.value; });
+        
+        // 초기 음량 3% 설정
+        bgm.volume = 0.03;
+
+        vol.addEventListener('input', function() { 
+            bgm.volume = this.value; 
+        });
+
         function toggleBgm() {
-            if (bgm.paused) { bgm.play(); document.getElementById("playBtn").innerText = "노래 끄기"; document.getElementById("musicText").innerText = "Music 🎶"; } 
-            else { bgm.pause(); document.getElementById("playBtn").innerText = "노래 켜기"; document.getElementById("musicText").innerText = "Music 🔇"; }
+            if (bgm.paused) { 
+                bgm.play().then(() => {
+                    document.getElementById("playBtn").innerText = "노래 끄기"; 
+                    document.getElementById("musicText").innerText = "Music 🎶";
+                }).catch(e => console.log("불러오는 중..."));
+            } 
+            else { 
+                bgm.pause(); 
+                document.getElementById("playBtn").innerText = "노래 켜기"; 
+                document.getElementById("musicText").innerText = "Music 🔇"; 
+            }
         }
         function openModal(src) { document.getElementById("myModal").style.display = "block"; document.getElementById("img01").src = src; }
         function closeModal() { document.getElementById("myModal").style.display = "none"; }
