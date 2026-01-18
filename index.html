@@ -9,13 +9,13 @@
         body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', sans-serif; margin: 0; padding: 20px; text-align: center; cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym847.cur'), auto !important; overflow-x: hidden; }
         .container { max-width: 900px; margin: 0 auto; }
         
-        /* 음악 컨트롤러 */
+        /* 음악 컨트롤러 (음량 3% 초기값) */
         .bgm-controls { position: fixed; bottom: 20px; right: 20px; z-index: 3000; background: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(255,107,129,0.3); display: flex; align-items: center; gap: 12px; border: 2px solid #ff6b81; }
         .bgm-btn { background: #ff6b81; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px; white-space: nowrap; }
         .volume-slider { width: 70px; cursor: pointer; accent-color: #ff6b81; }
 
-        /* 배너 및 헤더 스타일 */
-        .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; }
+        /* 상단 배너 및 헤더 */
+        .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; position: relative; }
         .mini-banner { 
             width: 65px; height: 65px; border-radius: 50%; overflow: hidden; cursor: pointer; 
             border: 2px solid #ff6b81; position: absolute; left: 0; transition: 0.5s; 
@@ -24,19 +24,11 @@
         .mini-banner img { width: 100%; height: 100%; object-fit: cover; }
         .header { color: #ff6b81; font-size: 28px; font-weight: bold; text-shadow: 2px 2px #fff; }
 
-        /* 갤러리 */
-        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px; }
-        .item { background: white; border-radius: 20px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .item img { width: 100%; aspect-ratio: 1 / 1; border-radius: 15px; object-fit: cover; cursor: pointer; }
-        
-        /* 섹션 스타일 */
+        /* 섹션 공통 스타일 */
         .content-section { background: white; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; border: 2px solid #ffe5ec; }
         .section-title { font-size: 18px; font-weight: bold; color: #ff6b81; margin-bottom: 15px; display: block; }
-        
-        .modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); padding-top: 50px; }
-        .modal-content { background: white; margin: auto; padding: 20px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; }
-        .modal-img { width: 100%; border-radius: 15px; }
-        .close { position: absolute; right: 20px; top: 10px; color: #ff6b81; font-size: 30px; cursor: pointer; }
+
+        .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; padding-bottom: 30px; }
     </style>
 </head>
 <body>
@@ -64,35 +56,25 @@
             🌸 푸린공주 방송국 바로가기 🌸
         </div>
 
-        <div class="gallery">
-            <div class="item"><img src="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu1"></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/527f9e36-927e-4f18-bdfa-ecbca47ee1d1" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu2"></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/a27f1442-2b63-4afc-8b9c-cc384d6fc0ec" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu3"></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/4216c378-62ec-47d8-9492-86d9cab94651" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu4"></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/30e0f159-4f1b-47ef-903c-e5ff047eda98" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu5"></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/3014121d-ad8e-475b-82f0-f1d6df7026db" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu6"></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/c29f281a-4892-4569-b6f8-2cdb3b834ae2" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu7"></div></div>
-            <div class="item"><img src="https://github.com/user-attachments/assets/86e9b65b-fb15-4f5d-81ef-055d0a9a7f91" onclick="openModal(this.src)"><div data-lyket-type="like" data-lyket-id="pu8"></div></div>
+        <div class="content-section">
+            <span class="section-title">🖼️ 푸린공주 갤러리</span>
+            <iframe src="https://padlet.com/kmshes1992/padlet-rtqct0kur5sl2uuu" frameborder="0" style="width:100%; height:600px; border-radius:15px;"></iframe>
+            <p style="font-size:12px; color:#ffb3c1; margin-top:10px;">* 카샤니님이 패들렛에 사진을 올리면 자동으로 업데이트됩니다! *</p>
         </div>
 
         <div class="content-section">
             <span class="section-title">💬 팬 실시간 대화창 💬</span>
             <iframe src="https://padlet.com/kmshes1992/padlet-lw1d74qmzv93usl1" frameborder="0" style="width:100%; height:450px; border-radius:15px;"></iframe>
         </div>
-        
-        <div class="content-section">
-            <span class="section-title">💖 사진 제보 및 방명록 💖</span>
-            <iframe src="https://padlet.com/kmshes1992/padlet-rtqct0kur5sl2uuu" frameborder="0" style="width:100%; height:500px; border-radius:15px;"></iframe>
-        </div>
-    </div>
 
-    <div id="myModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><img id="img01" class="modal-img"></div></div>
+        <div class="footer">© THE K 푸린공주. All rights reserved.</div>
+    </div>
 
     <script>
         var bgm = document.getElementById("bgm");
         var vol = document.getElementById("volumeControl");
         
-        // 초기 음량 3% 설정
+        // 초기 볼륨 3%
         bgm.volume = 0.03;
 
         vol.addEventListener('input', function() { 
@@ -104,7 +86,7 @@
                 bgm.play().then(() => {
                     document.getElementById("playBtn").innerText = "노래 끄기"; 
                     document.getElementById("musicText").innerText = "Music 🎶";
-                }).catch(e => console.log("불러오는 중..."));
+                }).catch(e => console.log("오디오 대기 중..."));
             } 
             else { 
                 bgm.pause(); 
@@ -112,8 +94,6 @@
                 document.getElementById("musicText").innerText = "Music 🔇"; 
             }
         }
-        function openModal(src) { document.getElementById("myModal").style.display = "block"; document.getElementById("img01").src = src; }
-        function closeModal() { document.getElementById("myModal").style.display = "none"; }
     </script>
 </body>
 </html>
