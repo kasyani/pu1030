@@ -4,19 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE K 푸린공주</title>
+    
+    <link rel="icon" href="https://github.com/user-attachments/assets/0af39885-0e6c-4ddd-93f4-bc5599664a2e" type="image/x-icon">
+    
     <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_786518a487504f7678505500859556"></script>
+    
     <style>
-        body { background-color: #fff0f3; font-family: 'Apple SD Gothic Neo', sans-serif; margin: 0; padding: 20px; text-align: center; cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym847.cur'), auto !important; overflow-x: hidden; }
+        body { 
+            background-color: #fff0f3; 
+            font-family: 'Apple SD Gothic Neo', sans-serif; 
+            margin: 0; padding: 20px; text-align: center; 
+            cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym847.cur'), auto !important; 
+            overflow-x: hidden; 
+        }
         
-        /* 전체 컨테이너 너비를 900px -> 1200px로 확장 */
+        /* 1. 화면 너비 확장 (900px -> 1200px) */
         .container { max-width: 1200px; margin: 0 auto; }
         
-        /* 음악 컨트롤러 */
-        .bgm-controls { position: fixed; bottom: 20px; right: 20px; z-index: 3000; background: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(255,107,129,0.3); display: flex; align-items: center; gap: 12px; border: 2px solid #ff6b81; }
-        .bgm-btn { background: #ff6b81; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px; white-space: nowrap; }
+        /* 2. 음악 컨트롤러 (우하단 고정) */
+        .bgm-controls { 
+            position: fixed; bottom: 20px; right: 20px; z-index: 3000; 
+            background: white; padding: 12px 20px; border-radius: 50px; 
+            box-shadow: 0 5px 15px rgba(255,107,129,0.3); 
+            display: flex; align-items: center; gap: 12px; border: 2px solid #ff6b81; 
+        }
+        .bgm-btn { 
+            background: #ff6b81; color: white; border: none; padding: 8px 15px; 
+            border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px; white-space: nowrap; 
+        }
         .volume-slider { width: 70px; cursor: pointer; accent-color: #ff6b81; }
 
-        /* 상단 배너 */
+        /* 3. 상단 배너 및 헤더 */
         .top-container { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; position: relative; }
         .mini-banner { 
             width: 75px; height: 75px; border-radius: 50%; overflow: hidden; cursor: pointer; 
@@ -26,8 +44,11 @@
         .mini-banner img { width: 100%; height: 100%; object-fit: cover; }
         .header { color: #ff6b81; font-size: 32px; font-weight: bold; text-shadow: 2px 2px #fff; }
 
-        /* 섹션 공통 스타일 */
-        .content-section { background: white; border-radius: 25px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; border: 2px solid #ffe5ec; }
+        /* 4. 섹션 스타일 */
+        .content-section { 
+            background: white; border-radius: 25px; padding: 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; border: 2px solid #ffe5ec; 
+        }
         .section-title { font-size: 20px; font-weight: bold; color: #ff6b81; margin-bottom: 15px; display: block; }
 
         .footer { margin-top: 50px; font-size: 12px; color: #ffb3c1; padding-bottom: 30px; }
@@ -74,14 +95,20 @@
     <script>
         var bgm = document.getElementById("bgm");
         var vol = document.getElementById("volumeControl");
+        
+        // 초기 볼륨 3%
         bgm.volume = 0.03;
-        vol.addEventListener('input', function() { bgm.volume = this.value; });
+
+        vol.addEventListener('input', function() { 
+            bgm.volume = this.value; 
+        });
+
         function toggleBgm() {
             if (bgm.paused) { 
                 bgm.play().then(() => {
                     document.getElementById("playBtn").innerText = "노래 끄기"; 
                     document.getElementById("musicText").innerText = "Music 🎶";
-                }).catch(e => console.log("대기 중..."));
+                }).catch(e => console.log("음악 로드 대기 중..."));
             } 
             else { 
                 bgm.pause(); 
